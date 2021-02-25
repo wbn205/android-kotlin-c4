@@ -10,24 +10,100 @@
             type="com.udacity.project4.locationreminders.reminderslist.ReminderDataItem" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
         tools:context=".locationreminders.ReminderDescriptionActivity">
-        <!--TODO: add the design of the reminder details-->
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Reminder Details"
+            android:layout_marginTop="@dimen/margin_normal"
             android:textSize="@dimen/text_size_large"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:padding="@dimen/padding_small"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@{reminderDataItem.title}"
+            tools:text="Title" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:textSize="@dimen/text_size_medium"
+            android:padding="@dimen/padding_small"
+            app:layout_constraintStart_toStartOf="@+id/title"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            android:text="@{reminderDataItem.description}"
+            tools:text="Description" />
+
+        <TextView
+            android:id="@+id/label_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@string/label_location"
+            android:textSize="@dimen/text_size_medium"
+            android:padding="@dimen/padding_small"
+            app:layout_constraintStart_toStartOf="@+id/description"
+            app:layout_constraintTop_toBottomOf="@+id/description" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{reminderDataItem.location}"
+            android:textSize="@dimen/text_size_medium"
+            android:padding="@dimen/padding_small"
+            app:layout_constraintBottom_toBottomOf="@+id/label_location"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Some point of interest" />
+
+        <TextView
+            android:id="@+id/label_latitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_latitude"
+            android:textSize="@dimen/text_size_medium"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:padding="@dimen/padding_small"
+            app:layout_constraintStart_toStartOf="@+id/label_location"
+            app:layout_constraintTop_toBottomOf="@+id/label_location" />
+
+        <TextView
+            android:id="@+id/latitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{String.format("%.1f", reminderDataItem.latitude)}'
+            android:textSize="@dimen/text_size_medium"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:padding="@dimen/padding_small"
+            app:layout_constraintBottom_toBottomOf="@+id/label_latitude"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/label_longitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_longitude"
+            android:textSize="@dimen/text_size_medium"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:padding="@dimen/padding_small"
+            app:layout_constraintStart_toStartOf="@+id/label_latitude"
+            app:layout_constraintTop_toBottomOf="@+id/label_latitude" />
+
+        <TextView
+            android:id="@+id/longitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{String.format("%.1f", reminderDataItem.longitude)}'
+            android:textSize="@dimen/text_size_medium"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:padding="@dimen/padding_small"
+            app:layout_constraintBottom_toBottomOf="@+id/label_longitude"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

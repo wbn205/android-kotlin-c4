@@ -1,6 +1,7 @@
 package com.udacity.project4
 
 import android.app.Application
+import com.facebook.stetho.Stetho
 import com.udacity.project4.locationreminders.data.ReminderDataSource
 import com.udacity.project4.locationreminders.data.local.LocalDB
 import com.udacity.project4.locationreminders.data.local.RemindersLocalRepository
@@ -15,6 +16,8 @@ class MyApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        Stetho.initializeWithDefaults(this)
 
         /**
          * use Koin Library as a service locator
@@ -43,5 +46,7 @@ class MyApp : Application() {
             androidContext(this@MyApp)
             modules(listOf(myModule))
         }
+
+
     }
 }
