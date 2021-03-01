@@ -15,6 +15,7 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 import com.udacity.project4.locationreminders.RemindersActivity
+import com.udacity.project4.locationreminders.reminderslist.EXTRA_LOGGING_OUT
 
 
 /**
@@ -33,6 +34,8 @@ class AuthenticationActivity : AppCompatActivity() {
     // Get a reference to the ViewModel scoped to this Fragment.
     private val viewModel by viewModels<AuthenticationViewModel>()
 
+    private var loggingOut : Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAuthenticationBinding.inflate(layoutInflater)
@@ -41,11 +44,16 @@ class AuthenticationActivity : AppCompatActivity() {
 
         binding.btnLogin.setOnClickListener { launchSignInFlow() }
 
+        // If coming from logout
+        loggingOut = intent.getBooleanExtra(EXTRA_LOGGING_OUT, false)
+        intent.removeExtra(EXTRA_LOGGING_OUT)
+
         // Observe the authentication state so we can know if the user has logged in successfully.
         // If the user has logged in successfully, bring them back to the settings screen.
         // If the user did not log in successfully, display an error message.
         viewModel.authenticationState.observe(this, Observer { authenticationState ->
-            if (authenticationState == AuthenticationViewModel.AuthenticationState.AUTHENTICATED) {
+            if (authenticationState == AuthenticationViewModel.AuthenticationState.AUTHENTICATED && !loggingOut) {
+
                 startActivity(Intent(this, RemindersActivity::class.java))
                 finish()
 
@@ -54,12 +62,11 @@ class AuthenticationActivity : AppCompatActivity() {
             }
         })
 
-//          TODO: a bonus is to customize the sign in flow to look nice using :
-        //https://github.com/firebase/FirebaseUI-Android/blob/master/auth/README.md#custom-layout
-
     }
 
     private fun launchSignInFlow() {
+        loggingOut = false
+
         // Give users the option to sign in / register with their email or Google account. If users
         // choose to register with their email, they will need to create a password as well.
         val providers = arrayListOf(

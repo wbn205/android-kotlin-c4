@@ -76,7 +76,7 @@
             android:id="@+id/latitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{String.format("%.1f", reminderDataItem.latitude)}'
+            android:text='@{String.format("%.6f", reminderDataItem.latitude)}'
             android:textSize="@dimen/text_size_medium"
             android:layout_marginTop="@dimen/margin_normal"
             android:padding="@dimen/padding_small"
@@ -98,7 +98,7 @@
             android:id="@+id/longitude"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text='@{String.format("%.1f", reminderDataItem.longitude)}'
+            android:text='@{String.format("%.6f", reminderDataItem.longitude)}'
             android:textSize="@dimen/text_size_medium"
             android:layout_marginTop="@dimen/margin_normal"
             android:padding="@dimen/padding_small"

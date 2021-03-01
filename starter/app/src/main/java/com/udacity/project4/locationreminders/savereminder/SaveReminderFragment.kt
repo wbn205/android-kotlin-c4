@@ -25,6 +25,7 @@ import com.udacity.project4.locationreminders.geofence.GeofenceBroadcastReceiver
 import com.udacity.project4.locationreminders.reminderslist.ReminderDataItem
 import com.udacity.project4.utils.setDisplayHomeAsUpEnabled
 import org.koin.android.ext.android.inject
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 const val GEOFENCE_RADIUS_IN_METERS = 100f
@@ -52,9 +53,29 @@ class SaveReminderFragment : BaseFragment() {
 
         setDisplayHomeAsUpEnabled(true)
 
+        // default values for testing
+        setDefaultValuesToViewModel()
+
         binding.viewModel = _viewModel
 
         return binding.root
+    }
+
+    /**
+     * Default values for easier testing like described:
+     * https://knowledge.udacity.com/questions/493332#493354
+     */
+    private fun setDefaultValuesToViewModel() {
+        val latitude = 50.08493667311937
+        val longitude = 8.247528954316788
+        _viewModel.reminderSelectedLocationStr.value = String.format(
+            Locale.getDefault(),
+            "Lat: %1$.5f, Long: %2$.5f",
+            latitude,
+            longitude
+        )
+        _viewModel.latitude.value = latitude
+        _viewModel.longitude.value = longitude
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
