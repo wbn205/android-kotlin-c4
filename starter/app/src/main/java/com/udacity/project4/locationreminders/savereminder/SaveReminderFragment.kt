@@ -54,7 +54,9 @@ class SaveReminderFragment : BaseFragment() {
         setDisplayHomeAsUpEnabled(true)
 
         // default values for testing
-        setDefaultValuesToViewModel()
+        if(_viewModel.reminderSelectedLocationStr.value == null) {
+            setDefaultValuesToViewModel()
+        }
 
         binding.viewModel = _viewModel
 

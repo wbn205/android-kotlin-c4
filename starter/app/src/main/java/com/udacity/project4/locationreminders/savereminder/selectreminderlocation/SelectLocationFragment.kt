@@ -186,8 +186,6 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
             Log.e("TAG", "GPS is on")
             val currentLatitude: Double = location.latitude
             val currentLongitude: Double = location.longitude
-            //val currentLocation = LatLng(currentLatitude, currentLongitude)
-            //map.addMarker(MarkerOptions().position(currentLocation).title("Your Current Location"))
             map.moveCamera(
                 CameraUpdateFactory.newLatLngZoom(
                     LatLng(
